@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Widget</title>
+  <script src="chat-widget.js"></script>
+</head>
+<body>
+  <script>
+    const chat = new ChatWidget({
+      position: "bottom-right",
+      title: "Support Chat",
+      apiUrl: "https://your-api-url.com",
+      themeColor: "#28a745",
+      onMessage: (message) => {
+        console.log("User sent a message:", message);
+      },
+    });
+  </script>
+</body>
+</html>
