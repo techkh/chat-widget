@@ -1,21 +1,36 @@
 class ChatWidget {
     constructor(config) {
         this.config = {
+            apiKey: config.apiKey || null,
+            secretKey: config.secretKey || null,
             position: config.position || "bottom-right",
             title: config.title || "Chat with us",
             apiUrl: config.apiUrl || "https://your-backend-url.com",
             themeColor: config.themeColor || "#007BFF",
             onMessage: config.onMessage || (() => { }),
+            onError: config.onError || (() => { }),
         };
         this.init();
     }
 
     init() {
-        this.createStyles();
-        this.createWidget();
-        this.setupEventListeners();
+        if (this.config.apiKey == null || this.config.secretKey == null) {
+            //console.log('Required api_key and secret_key, please check your register account.');
+            this.config.onError("Required api_key and secret_key, please check your register account.");
+        } else {
+            this.createChat();
+            this.createStyles();
+            this.createWidget();
+            this.setupEventListeners();
+        }
     }
-
+    createChat() {
+        console.log('createChat');
+        this.onSubscribe();
+    }
+    onSubscribe() {
+        console.log('onSubscribe');
+    }
     createStyles() {
         const style = document.createElement("style");
         style.innerHTML = `
@@ -117,7 +132,7 @@ class ChatWidget {
             const botMessage = document.createElement("div");
             botMessage.style.margin = "10px 0";
             botMessage.style.textAlign = "left";
-            botMessage.textContent = `Echo: ${ message }`;
+            botMessage.textContent = `Echo: ${message}`;
             chatBody.appendChild(botMessage);
             chatBody.scrollTop = chatBody.scrollHeight; // Auto-scroll
         }, 500);
@@ -125,6 +140,8 @@ class ChatWidget {
         // Trigger callback
         this.config.onMessage(message);
     }
+
+
 }
 
 // Expose the library globally

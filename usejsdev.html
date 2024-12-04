@@ -3,23 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat Widget</title>
-  <script src="chat-widget.js"></script>
+  <title>Chat Widget Demo</title>
+  <script src="https://cdn.jsdelivr.net/gh/techkh/chat-widget/chat-widget.js"></script>
 </head>
 <body>
   <script>
     const chat = new ChatWidget({
-      apiKey:"asdfasdf",
-      secretKey:"asdfasdf",
       position: "bottom-right",
       title: "Support Chat",
-      apiUrl: "https://your-api-url.com",
       themeColor: "#28a745",
       onMessage: (message) => {
         console.log("User sent a message:", message);
-      },
-      onError: (message) => {
-        console.log(message);
       },
     });
   </script>
