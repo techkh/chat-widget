@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Widget</title>
+  <!-- Include MQTT.js from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"
+    integrity="sha512-v8+bPcpk4Sj7CKB11+gK/FnsbgQ15jTwZamnBf/xDmiQDcgOIYufBo6Acu1y30vrk8gg5su4x0CG3zfPaq5Fcg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/5.10.3/mqtt.min.js"></script>
+  <script src="chat-service.js"></script>
+  <script src="chat-widget.js"></script>
+</head>
+
+<body>
+  <script>
+    const chat = new ChatWidget({
+      mqtt: mqtt,
+      apiKey: "8cd42650b31a11efa1bc411150191b1b",
+      secretKey: "74b481ff35154121bbf4599dfc52615f",
+      position: "bottom-right",
+      title: "Support Chat",
+      themeColor: "#28a745",
+      onMessage: (message) => {
+        console.log("User sent a message:", message);
+      },
+      onError: (message) => {
+        console.log(message);
+      },
+    });
+    if (chat) {
+
+      setTimeout(() => {
+        chat.startChat({
+          sender_profile: {
+            id: 1,
+            first_name: "kuch",
+            last_name: "darith"
+          },
+          reciver_profile: {
+            id: 2,
+            first_name: "Sor",
+            last_name: "Sambath"
+          },
+        });
+      }, 1000);
+    }
+  </script>
+</body>
+
+</html>
