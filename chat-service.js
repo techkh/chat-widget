@@ -4,6 +4,8 @@ var _receiver = null;
 var _dataJoin = null;
 let audio = null;
 
+var chatServer = "192.168.0.15:8883";
+var apiServer = "http://192.168.0.15:3045/graphql";
 
 class ChatService {
     generateUUID() { // Public Domain/MIT
